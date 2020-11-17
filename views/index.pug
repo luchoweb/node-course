@@ -19,7 +19,7 @@ block content
   header.masthead.bg-primary.text-white.text-center
     .container.d-flex.align-items-center.flex-column
       // Masthead Avatar Image
-      img.masthead-avatar.mb-5(src='/images/avataaars.svg' alt='')
+      img.masthead-avatar.mb-5(src=info.photo alt='me', height="250")
       // Masthead Heading
       h1.masthead-heading.text-uppercase.mb-0 #{info.jobTitle}
       // Icon Divider
@@ -66,16 +66,14 @@ block content
       // About Section Content
       .row
         .col-lg-4.ml-auto
-          p.lead
-            | Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.
+          p.lead #{info.aboutOne}
         .col-lg-4.mr-auto
-          p.lead
-            | You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!
+          p.lead #{info.aboutTwo}
       // About Section Button
       .text-center.mt-4
-        a.btn.btn-xl.btn-outline-light(href='https://startbootstrap.com/theme/freelancer/')
+        a.btn.btn-xl.btn-outline-light(href=info.linkCV)
           i.fas.fa-download.mr-2
-          | Free Download!
+          | Download CV
   // Contact Section
   section#contact.page-section
     .container

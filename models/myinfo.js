@@ -1,8 +1,11 @@
-const MyInfo = function (name, jobTitle, descriptionTop, about, location, socialLinks, aboutFooter) {
+const MyInfo = function (name, photo, jobTitle, descriptionTop, aboutOne, aboutTwo, linkCV, location, socialLinks, aboutFooter) {
   this.name = name;
+  this.photo = photo;
   this.jobTitle = jobTitle;
   this.descriptionTop = descriptionTop;
-  this.about = about;
+  this.aboutOne = aboutOne;
+  this.aboutTwo = aboutTwo;
+  this.linkCV = linkCV;
   this.location = location;
   this.socialLinks = socialLinks;
   this.aboutFooter = aboutFooter;

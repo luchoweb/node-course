@@ -19,11 +19,14 @@ const socialLinks = [
 ];
 
 exports.info = new MyInfo(
-  "Lucho Web",
-  "Web Developer",
-  "<Welcome to my web resume />",
-  "About me",
-  "Medellin, Colombia",
+  'Lucho Web',
+  'https://i.ibb.co/bbqnm9B/me.png',
+  'Web Developer',
+  '<Welcome to my web resume />',
+  'About me 1.',
+  'About me 2.',
+  '/cv.pdf',
+  'Medellin, Colombia.',
   socialLinks,
   "I'm a senior web developer with 12+ years of experencie."
 );

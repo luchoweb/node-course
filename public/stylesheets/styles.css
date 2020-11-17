@@ -10111,6 +10111,7 @@ h3 {
   font-size: 1.25rem;
 }
 .masthead .masthead-avatar {
+  border-radius: 50%;
   width: 15rem;
 }
 
