@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Lucho Web' });
+const MyInfo = require('../controllers/myinfo');
+const Projects = require('../controllers/projects');
+
+router.get('/', (req, res) => {
+  res.render('index', {
+    info: MyInfo.info,
+    projects: Projects.all
+  });
 });
 
 module.exports = router;

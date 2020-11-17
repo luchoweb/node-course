@@ -3,7 +3,7 @@ extends layout
 block content
   nav#mainNav.navbar.navbar-expand-lg.bg-secondary.text-uppercase.fixed-top
     .container
-      a.navbar-brand.js-scroll-trigger(href='#page-top') !{title}
+      a.navbar-brand.js-scroll-trigger(href='#page-top') #{info.name}
       button.navbar-toggler.navbar-toggler-right.text-uppercase.font-weight-bold.bg-primary.text-white.rounded(type='button' data-toggle='collapse' data-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation')
         | Menu
         i.fas.fa-bars
@@ -21,7 +21,7 @@ block content
       // Masthead Avatar Image
       img.masthead-avatar.mb-5(src='/images/avataaars.svg' alt='')
       // Masthead Heading
-      h1.masthead-heading.text-uppercase.mb-0 Start Bootstrap
+      h1.masthead-heading.text-uppercase.mb-0 #{info.jobTitle}
       // Icon Divider
       .divider-custom.divider-light
         .divider-custom-line
@@ -29,7 +29,7 @@ block content
           i.fas.fa-star
         .divider-custom-line
       // Masthead Subheading
-      p.masthead-subheading.font-weight-light.mb-0 Graphic Artist - Web Designer - Illustrator
+      p.masthead-subheading.font-weight-light.mb-0 #{info.descriptionTop}
   // Portfolio Section
   section#portfolio.page-section.portfolio
     .container
@@ -44,47 +44,14 @@ block content
       // Portfolio Grid Items
       .row.justify-content-center
         // Portfolio Item 1
-        .col-md-6.col-lg-4.mb-5
-          .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal1')
-            .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
-              .portfolio-item-caption-content.text-center.text-white
-                i.fas.fa-plus.fa-3x
-            img.img-fluid(src='/images/portfolio/cabin.png' alt='')
-        // Portfolio Item 2
-        .col-md-6.col-lg-4.mb-5
-          .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal2')
-            .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
-              .portfolio-item-caption-content.text-center.text-white
-                i.fas.fa-plus.fa-3x
-            img.img-fluid(src='/images/portfolio/cake.png' alt='')
-        // Portfolio Item 3
-        .col-md-6.col-lg-4.mb-5
-          .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal3')
-            .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
-              .portfolio-item-caption-content.text-center.text-white
-                i.fas.fa-plus.fa-3x
-            img.img-fluid(src='/images/portfolio/circus.png' alt='')
-        // Portfolio Item 4
-        .col-md-6.col-lg-4.mb-5.mb-lg-0
-          .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal4')
-            .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
-              .portfolio-item-caption-content.text-center.text-white
-                i.fas.fa-plus.fa-3x
-            img.img-fluid(src='/images/portfolio/game.png' alt='')
-        // Portfolio Item 5
-        .col-md-6.col-lg-4.mb-5.mb-md-0
-          .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal5')
-            .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
-              .portfolio-item-caption-content.text-center.text-white
-                i.fas.fa-plus.fa-3x
-            img.img-fluid(src='/images/portfolio/safe.png' alt='')
-        // Portfolio Item 6
-        .col-md-6.col-lg-4
-          .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal6')
-            .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
-              .portfolio-item-caption-content.text-center.text-white
-                i.fas.fa-plus.fa-3x
-            img.img-fluid(src='/images/portfolio/submarine.png' alt='')
+        each project in projects
+          if project
+            .col-md-6.col-lg-4.mb-5
+              .portfolio-item.mx-auto(data-toggle='modal' data-target='#portfolioModal1')
+                .portfolio-item-caption.d-flex.align-items-center.justify-content-center.h-100.w-100
+                  .portfolio-item-caption-content.text-center.text-white
+                    i.fas.fa-plus.fa-3x
+                img.img-fluid(src=project.pathImage, alt=project.name)
   // About Section
   section#about.page-section.bg-primary.text-white.mb-0
     .container
@@ -156,32 +123,21 @@ block content
         // Footer Location
         .col-lg-4.mb-5.mb-lg-0
           h4.text-uppercase.mb-4 Location
-          p.lead.mb-0
-            | 2215 John Daniel Drive
-            br
-            |                             Clark, MO 65243
+          p.lead.mb-0 #{info.location}
         // Footer Social Icons
         .col-lg-4.mb-5.mb-lg-0
           h4.text-uppercase.mb-4 Around the Web
-          a.btn.btn-outline-light.btn-social.mx-1(href='#!')
-            i.fab.fa-fw.fa-facebook-f
-          a.btn.btn-outline-light.btn-social.mx-1(href='#!')
-            i.fab.fa-fw.fa-twitter
-          a.btn.btn-outline-light.btn-social.mx-1(href='#!')
-            i.fab.fa-fw.fa-linkedin-in
-          a.btn.btn-outline-light.btn-social.mx-1(href='#!')
-            i.fab.fa-fw.fa-dribbble
+          each social in info.socialLinks
+            a.btn.btn-outline-light.btn-social.mx-1(href=social.href, title=social.title, target='_blank')
+              i(class=`fab fa-fw ${social.icon}`)
         // Footer About Text
         .col-lg-4
-          h4.text-uppercase.mb-4 About Freelancer
-          p.lead.mb-0
-            | Freelance is a free to use, MIT licensed Bootstrap theme created by
-            a(href='http://startbootstrap.com') Start Bootstrap
-            |                             .
+          h4.text-uppercase.mb-4 About Me
+          p.lead.mb-0 #{info.aboutFooter}
   // Copyright Section
   .copyright.py-4.text-center.text-white
     .container
-      small Copyright &copy; Your Website 2020
+      small Copyright &copy; #{info.name}
   // Scroll to Top Button (Only visible on small and extra-small screen sizes)
   .scroll-to-top.d-lg-none.position-fixed
     a.js-scroll-trigger.d-block.text-center.text-white.rounded(href='#page-top')
@@ -213,139 +169,9 @@ block content
                   | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
                 button.btn.btn-primary(data-dismiss='modal')
                   i.fas.fa-times.fa-fw
-                  |                                         Close Window
-  // Portfolio Modal 2
-  #portfolioModal2.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal2Label' aria-hidden='true')
-    .modal-dialog.modal-xl(role='document')
-      .modal-content
-        button.close(type='button' data-dismiss='modal' aria-label='Close')
-          span(aria-hidden='true')
-            i.fas.fa-times
-        .modal-body.text-center
-          .container
-            .row.justify-content-center
-              .col-lg-8
-                // Portfolio Modal - Title
-                h2#portfolioModal2Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Tasty Cake
-                // Icon Divider
-                .divider-custom
-                  .divider-custom-line
-                  .divider-custom-icon
-                    i.fas.fa-star
-                  .divider-custom-line
-                // Portfolio Modal - Image
-                img.img-fluid.rounded.mb-5(src='/images/portfolio/cake.png' alt='')
-                // Portfolio Modal - Text
-                p.mb-5
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
-                button.btn.btn-primary(data-dismiss='modal')
-                  i.fas.fa-times.fa-fw
-                  |                                         Close Window
-  // Portfolio Modal 3
-  #portfolioModal3.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal3Label' aria-hidden='true')
-    .modal-dialog.modal-xl(role='document')
-      .modal-content
-        button.close(type='button' data-dismiss='modal' aria-label='Close')
-          span(aria-hidden='true')
-            i.fas.fa-times
-        .modal-body.text-center
-          .container
-            .row.justify-content-center
-              .col-lg-8
-                // Portfolio Modal - Title
-                h2#portfolioModal3Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Circus Tent
-                // Icon Divider
-                .divider-custom
-                  .divider-custom-line
-                  .divider-custom-icon
-                    i.fas.fa-star
-                  .divider-custom-line
-                // Portfolio Modal - Image
-                img.img-fluid.rounded.mb-5(src='/images/portfolio/circus.png' alt='')
-                // Portfolio Modal - Text
-                p.mb-5
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
-                button.btn.btn-primary(data-dismiss='modal')
-                  i.fas.fa-times.fa-fw
-                  |                                         Close Window
-  // Portfolio Modal 4
-  #portfolioModal4.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal4Label' aria-hidden='true')
-    .modal-dialog.modal-xl(role='document')
-      .modal-content
-        button.close(type='button' data-dismiss='modal' aria-label='Close')
-          span(aria-hidden='true')
-            i.fas.fa-times
-        .modal-body.text-center
-          .container
-            .row.justify-content-center
-              .col-lg-8
-                // Portfolio Modal - Title
-                h2#portfolioModal4Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Controller
-                // Icon Divider
-                .divider-custom
-                  .divider-custom-line
-                  .divider-custom-icon
-                    i.fas.fa-star
-                  .divider-custom-line
-                // Portfolio Modal - Image
-                img.img-fluid.rounded.mb-5(src='/images/portfolio/game.png' alt='')
-                // Portfolio Modal - Text
-                p.mb-5
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
-                button.btn.btn-primary(data-dismiss='modal')
-                  i.fas.fa-times.fa-fw
-                  |                                         Close Window
-  // Portfolio Modal 5
-  #portfolioModal5.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal5Label' aria-hidden='true')
-    .modal-dialog.modal-xl(role='document')
-      .modal-content
-        button.close(type='button' data-dismiss='modal' aria-label='Close')
-          span(aria-hidden='true')
-            i.fas.fa-times
-        .modal-body.text-center
-          .container
-            .row.justify-content-center
-              .col-lg-8
-                // Portfolio Modal - Title
-                h2#portfolioModal5Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Locked Safe
-                // Icon Divider
-                .divider-custom
-                  .divider-custom-line
-                  .divider-custom-icon
-                    i.fas.fa-star
-                  .divider-custom-line
-                // Portfolio Modal - Image
-                img.img-fluid.rounded.mb-5(src='/images/portfolio/safe.png' alt='')
-                // Portfolio Modal - Text
-                p.mb-5
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
-                button.btn.btn-primary(data-dismiss='modal')
-                  i.fas.fa-times.fa-fw
-                  |                                         Close Window
-  // Portfolio Modal 6
-  #portfolioModal6.portfolio-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='portfolioModal6Label' aria-hidden='true')
-    .modal-dialog.modal-xl(role='document')
-      .modal-content
-        button.close(type='button' data-dismiss='modal' aria-label='Close')
-          span(aria-hidden='true')
-            i.fas.fa-times
-        .modal-body.text-center
-          .container
-            .row.justify-content-center
-              .col-lg-8
-                // Portfolio Modal - Title
-                h2#portfolioModal6Label.portfolio-modal-title.text-secondary.text-uppercase.mb-0 Submarine
-                // Icon Divider
-                .divider-custom
-                  .divider-custom-line
-                  .divider-custom-icon
-                    i.fas.fa-star
-                  .divider-custom-line
-                // Portfolio Modal - Image
-                img.img-fluid.rounded.mb-5(src='/images/portfolio/submarine.png' alt='')
-                // Portfolio Modal - Text
-                p.mb-5
-                  | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.
-                button.btn.btn-primary(data-dismiss='modal')
-                  i.fas.fa-times.fa-fw
                   | Close Window
+
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js')
+  script(src='/javascripts/scripts.js')
