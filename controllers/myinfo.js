@@ -22,7 +22,7 @@ exports.info = new MyInfo(
   'Lucho Web',
   'https://i.ibb.co/bbqnm9B/me.png',
   'Web Developer',
-  '<Welcome to my web resume />',
+  'Welcome to my web resume',
   'About me 1.',
   'About me 2.',
   '/cv.pdf',
